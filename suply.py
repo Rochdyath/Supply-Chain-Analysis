@@ -14,4 +14,13 @@ def relationship_between_price_and_revenue():
                     trendline="ols")
     fig.show()
 
-relationship_between_price_and_revenue()
+def sales_by_product():
+    df = data.groupby('Product type')['Number of products sold'].sum().reset_index()
+    print(df)
+    fig = px.pie(df, values='Number of products sold', names='Product type',
+                    title='Sales by Product Type', hole=0.5,
+                    hover_data=['Number of products sold'],
+                    color_discrete_sequence=px.colors.qualitative.Set3)
+    fig.show()
+
+sales_by_product()
