@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 pio.templates.default = "plotly_white"
 
 data = pd.read_csv("supply_chain_data.csv")
+print(data.columns)
 
 def relationship_between_price_and_revenue():
     fig = px.scatter(data, x='Price', 
@@ -28,4 +29,10 @@ def revenue_from_shipping_carriers():
                  title='Total Revenue by Shipping Carrier')
     fig.show()
 
-revenue_from_shipping_carriers()
+def avg_lead_time_manufacturing_costs():
+    d1 = data.groupby('Product type')['Lead time'].mean().reset_index()
+    d2 = data.groupby('Product type')['Manufacturing costs'].mean().reset_index()
+    df = pd.merge(d1, d2, on='Product type')
+    print(df)
+
+avg_lead_time_manufacturing_costs()
