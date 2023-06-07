@@ -55,4 +55,22 @@ def carrier_shipping_cost():
                  title='Shipping Costs by Carrier')
     fig.show()
 
-carrier_shipping_cost()
+def cost_transportation_mode():
+    fig = px.pie(data, values='Costs', names='Transportation modes', 
+                 title='Cost Distribution by Transportation Mode', hole=0.5,
+                 color_discrete_sequence=px.colors.qualitative.Pastel)
+    fig.show()
+
+def avg_product_defects_rates():
+    df = data.groupby(['Product type'])['Defect rates'].mean().reset_index()
+    fig = px.bar(df, x='Product type', y='Defect rates', 
+                 title='Average Defect Rates by Product Type')
+    fig.show()
+
+def avg_tranportation_defects_rates():
+    df = data.groupby(['Transportation modes'])['Defect rates'].mean().reset_index()
+    fig = px.bar(df, x='Transportation modes', y='Defect rates', 
+                 title='Average Defect Rates by Transportation mode')
+    fig.show()
+
+avg_tranportation_defects_rates()
