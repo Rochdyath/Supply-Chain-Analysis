@@ -72,5 +72,3 @@ def avg_tranportation_defects_rates():
     fig = px.bar(df, x='Transportation modes', y='Defect rates', 
                  title='Average Defect Rates by Transportation mode')
     fig.show()
-
-avg_tranportation_defects_rates()
